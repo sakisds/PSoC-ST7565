@@ -239,6 +239,12 @@ void `$INSTANCE_NAME`_write_char(uint8_t c) {
     } else {
         `$INSTANCE_NAME`_draw_character(`$INSTANCE_NAME`_cursor_x, `$INSTANCE_NAME`_cursor_y, `$INSTANCE_NAME`_txtcolor, `$INSTANCE_NAME`_txtsize, c);
         `$INSTANCE_NAME`_cursor_x += `$INSTANCE_NAME`_txtsize*6;
+        
+        // New line if cursor outside of screen bounds
+        if (`$INSTANCE_NAME`_cursor_x > SCREEN_WIDTH - 1) {
+            `$INSTANCE_NAME`_cursor_x = 0;
+            `$INSTANCE_NAME`_cursor_y += `$INSTANCE_NAME`_txtsize*8;
+        }
     }
 }
 
